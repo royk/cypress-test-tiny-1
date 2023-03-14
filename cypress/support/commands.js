@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add(
+  'loadAudioFile', {
+    prevSubject: false
+  },
+  (fixture) => {
+    Cypress.log({
+      name: 'loadAudioFile'
+    });
+    cy.fixture(fixture, {encoding: null}).as('audioFixture');
+    cy.get('#input').selectFile('@audioFixture', {force:true});
+    cy.wait(400);
+    cy.get('#input').trigger('input', {force:true});
+});
