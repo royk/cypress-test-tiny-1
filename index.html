@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<input id="input" type="file" accept="audio/*"/>
+		<p></p>
+	</body>
+	<script>
+		const fileInput = document.getElementById('input');
+		const p = document.querySelector('p');
+		fileInput.onchange = () => {
+			const selectedFiles = [...fileInput.files];
+			if (!selectedFiles[0].type.startsWith('audio/')) {
+				return;
+			}
+			p.textContent = 'Success!';
+		};
+
+	</script>
+</html>
